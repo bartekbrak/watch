@@ -1,0 +1,20 @@
+sudo nano /etc/incron.allow
+    username
+incrontab -e
+    /home/bartek/workspace/watch/pdfs/ IN_MODIFY /home/bartek/workspace/watch/run.sh
+
+    My solution is
+
+    sudo apt-get install incron
+    echo "my_username" | sudo tee -a /etc/incron.allow # allow my_username to run incron
+    incrontab -e
+add the following to incrontab:
+
+    /home/my_username/path/myfile.swf IN_MODIFY /home/my_username/path/run.sh
+and the `run.sh` contains
+
+    killall gtk-gnash
+    gtk-gnash /home/my_username/path/myfile.swf
+
+
+xinit openbox tilda inotify-tools zlib1g-dev build-essentila g++ libjpeg8-dev libfreetype6-dev ghostscript git
